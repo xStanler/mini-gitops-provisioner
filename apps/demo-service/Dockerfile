@@ -1,19 +1,25 @@
-FROM demisto/fastapi:0.125.0.10158186
+FROM python:3.11-slim
 
-ARG APP_VERSION=1.0.0
-ARG COMMIT_SHA=unknown
-
-ENV APP_VERSION=${APP_VERSION}
-ENV COMMIT_SHA=${COMMIT_SHA}
-ENV ENVIRONMENT=deploy
-ENV HOSTNAME=alma-linux
+# setting up environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV APP_VERSION=local
+ENV COMMIT_SHA=local
+ENV ENVIRONMENT=local
 
 WORKDIR /app
 
-RUN pip install uv
+# installing uv package manager
+RUN pip install --no-cache-dir uv
 
-COPY . .
+# copying .toml and .lock files to install dependencies
+COPY pyproject.toml uv.lock .
 
-RUN uv sync
+RUN uv sync --frozen
 
-CMD ["uv", "run", "uvicorn", "app/main:app"]
+# copying app
+COPY app ./app
+
+EXPOSE 8000
+
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
