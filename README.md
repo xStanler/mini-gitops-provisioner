@@ -20,55 +20,55 @@ Documentation will be added as features are implemented.
 ## Future roadmap
 ### Phase 0
 
-Sample Application
+>Sample Application
 
 ### Phase 1
 
-Deployment pipeline
-
-Docker image
-GitHub Actions
-Helm
-Local Kubernetes
+>Deployment pipeline
+>
+>Docker image
+>GitHub Actions
+>Helm
+>Local Kubernetes
 
 ### Phase 2
 
-Provisioning API
-
-POST /deploy
-
-Automatic deployment requests.
+>Provisioning API
+>
+>POST /deploy
+>
+>Automatic deployment requests.
 
 ### Phase 3
 
-Application management
-
-GET /applications
-GET /deployments
-DELETE /deployment/{id}
+>Application management
+>
+>GET /applications
+>GET /deployments
+>DELETE /deployment/{id}
 
 ### Phase 4
 
-Git provider integration
-
-GitHub
-
-GitLab
-
-Automatic webhook handling.
+>Git provider integration
+>
+>GitHub
+>
+>GitLab
+>
+>Automatic webhook handling.
 
 ### Phase 5
 
-Production features
-
-Authentication
-
-RBAC
-
-Logs
-
-Deployment history
-
-Rollbacks
-
-Multiple environments
+>Production features
+>
+>Authentication
+>
+>RBAC
+>
+>Logs
+>
+>Deployment history
+>
+>Rollbacks
+>
+>Multiple environments
