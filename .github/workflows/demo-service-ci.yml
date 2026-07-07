@@ -40,9 +40,5 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
             ${{ env.IMAGE_NAME }}:latest
-          build-args: |
-            APP_VERSION=${{APP_VERSION}}
-            COMMIT_SHA=${{COMMIT_SHA}}
-            ENVIRONMENT=${{ENVIRONMENT}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
