@@ -20,8 +20,16 @@ async def get_root():
 
 @app.get("/health")
 async def check_health():
-    return """ {"status": "ok"} """
+    return JSONResponse(
+            status_code=200,
+            content={
+                "status": "ok"
+                }
+            )
 
 @app.get("/ready")
 async def get_ready():
-    return """ {"status": "ready"} """
+    return JSONResponse(
+            status_code=200,
+            content={"status": "ready"}
+            )
