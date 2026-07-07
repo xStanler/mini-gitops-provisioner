@@ -1,0 +1,13 @@
+image:
+  registry: ghcr.io
+  repository: xstanler/mini-gitops-provisioner/demo-service
+  tag: latest
+
+replicaCount: 1
+
+container:
+  port: 8000
+
+service:
+  port: 80
+  targetPort: 8000
