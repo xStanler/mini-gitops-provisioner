@@ -1,0 +1,25 @@
+FROM python:3.11-slim
+
+# setting up environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV APP_VERSION=local
+ENV COMMIT_SHA=local
+ENV ENVIRONMENT=local
+
+WORKDIR /app
+
+# installing uv package manager
+RUN pip install --no-cache-dir uv
+
+# copying .toml and .lock files to install dependencies
+COPY pyproject.toml uv.lock .
+
+RUN uv sync --frozen
+
+# copying app
+COPY app ./app
+
+EXPOSE 8000
+
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
