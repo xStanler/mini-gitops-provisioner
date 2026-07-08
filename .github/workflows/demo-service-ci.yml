@@ -20,11 +20,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. Set up Docker Buildx
+        # 1. Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 2. Log in to GitHub Container Registry
+        # 2. Log in to GitHub Container Registry
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
@@ -42,3 +42,21 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Update Helm image tag
+        run: |
+          sed -i 's/tag: .*/tag: "${{ github.sha }}"/' charts/demo-service/values.yaml
+      - name: Commit updated Helm values
+        run: |
+          git config user.name "github-actions"
+          git config user.emali "github-actions@github.com"
+
+          git add charts/demo-service/values.yaml
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update demo-service image tag to ${{ github.sha }}"
+            git push
+          fi
+
+

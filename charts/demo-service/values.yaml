@@ -1,7 +1,7 @@
 image:
   registry: ghcr.io
   repository: xstanler/mini-gitops-provisioner/demo-service
-  tag: latest
+  tag: e9641518606cddf763ee54902dab7c179025f547
 
 replicaCount: 1
 
