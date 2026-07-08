@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
@@ -47,8 +47,8 @@ jobs:
           sed -i 's/tag: .*/tag: "${{ github.sha }}"/' charts/demo-service/values.yaml
       - name: Commit updated Helm values
         run: |
-          git config user.name "github-actions"
-          git config user.emali "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-action[bot]@users.noreply.github.com"
 
           git add charts/demo-service/values.yaml
 
